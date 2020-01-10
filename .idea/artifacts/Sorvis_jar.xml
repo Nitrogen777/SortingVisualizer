@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Sorvis:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Sorvis_jar</output-path>
+    <root id="archive" name="Sorvis.jar">
+      <element id="module-output" name="Sorvis" />
+    </root>
+  </artifact>
+</component>
