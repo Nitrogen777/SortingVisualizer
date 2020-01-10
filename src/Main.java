@@ -12,6 +12,13 @@ public class Main {
             }
 
         };
+        new Sort("Bogo Sort"){
+            @Override
+            public void sortAlgorithm(int[] a) throws InterruptedException {
+                bogoSort(a);
+            }
+
+        };
         new Sort("Insertion Sort"){
             @Override
             public void sortAlgorithm(int[] a) throws InterruptedException {
@@ -116,6 +123,20 @@ public class Main {
                     a[(i + 1)] = t;
                 }
                 v.display(a, i, i + 1);
+            }
+        }
+        v.display(a, -1, -1);
+    }
+    public static void bogoSort(int[] a) throws InterruptedException {
+        while (!isSort(a)) {
+            Random r = new Random();
+            for (int i = 0; i < a.length; i++) {
+                int n1 = r.nextInt(a.length);
+                int n2 = r.nextInt(a.length);
+                int t = a[n2];
+                a[n2] = a[n1];
+                a[n1] = t;
+                v.display(a, n1, n2);
             }
         }
         v.display(a, -1, -1);

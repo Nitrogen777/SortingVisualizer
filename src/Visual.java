@@ -38,12 +38,12 @@ public class Visual extends javax.swing.JFrame
         //Thread.sleep(50);
         BufferedImage b = new BufferedImage(600, 600, 2);
         Graphics g = b.getGraphics();
-        s.getChannels()[0].programChange(81);
-        s.getChannels()[1].programChange(81);
+        s.getChannels()[0].programChange(74);
+        s.getChannels()[1].programChange(74);
         if(current != -1)
-            s.getChannels()[0].noteOn(a[current] / (int)Math.ceil(a.length / 120.0D), 75);
+            s.getChannels()[0].noteOn(a[current] * (int)Math.ceil(480/a.length) / 4, 75);
         if(check != -1)
-            s.getChannels()[1].noteOn(a[check] / (int)Math.ceil(a.length / 120.0D), 75);
+            s.getChannels()[1].noteOn(a[check] * (int)Math.ceil(480/a.length) / 4, 75);
         g.setColor(Color.black);
         g.fillRect(0, 0, 600, 600);
         g.setColor(Color.WHITE);
@@ -60,8 +60,8 @@ public class Visual extends javax.swing.JFrame
 
         getGraphics().drawImage(b, 0, 0, null);
         if(current != -1)
-            s.getChannels()[0].noteOff(a[current] / (int)Math.ceil(a.length / 120.0D), 75);
+            s.getChannels()[0].noteOff(a[current] * (int)Math.ceil(480/a.length) / 4, 75);
         if(check != -1)
-            s.getChannels()[1].noteOff(a[check] / (int)Math.ceil(a.length / 120.0D), 75);
+            s.getChannels()[1].noteOff(a[check] * (int)Math.ceil(480/a.length) / 4, 75);
     }
 }
