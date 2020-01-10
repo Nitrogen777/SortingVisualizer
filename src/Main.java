@@ -33,13 +33,6 @@ public class Main {
             }
 
         };
-        new Sort("Bubble Sort"){
-            @Override
-            public void sortAlgorithm(int[] a) throws InterruptedException {
-                bubbleSort(a);
-            }
-
-        };
         new Sort("Quick Sort"){
             @Override
             public void sortAlgorithm(int[] a) throws InterruptedException {
