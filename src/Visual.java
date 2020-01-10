@@ -3,10 +3,13 @@ import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.sound.midi.MidiChannel;
+import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Synthesizer;
 
 public class Visual extends javax.swing.JFrame
 {
+
+    private static Visual instance = null;
     Synthesizer s = javax.sound.midi.MidiSystem.getSynthesizer();
     javax.sound.midi.Soundbank sb = s.getDefaultSoundbank();
 
@@ -20,6 +23,13 @@ public class Visual extends javax.swing.JFrame
         setVisible(true);
         getContentPane().add(c);
         getContentPane().setBackground(Color.BLACK);
+    }
+
+    public static Visual getInstance() throws MidiUnavailableException {
+        if(instance == null){
+            instance = new Visual();
+        }
+        return instance;
     }
 
     public void paint(Graphics g) { super.paint(g); }

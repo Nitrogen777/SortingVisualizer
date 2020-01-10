@@ -2,12 +2,10 @@ import javax.swing.JComboBox;
 
 public class Cpanel extends javax.swing.JPanel
 {
-    Visual v;
     static int[] a;
 
     public Cpanel(Visual v) throws java.awt.HeadlessException
     {
-        v = this.v;
         setVisible(true);
         setSize(200, 600);
         javax.swing.JButton e = new javax.swing.JButton("Reverse");
@@ -59,93 +57,23 @@ public class Cpanel extends javax.swing.JPanel
         add(e);
         add(t);
         add(s);
-        final JComboBox<String> bc = new JComboBox();
-        bc.addItem("Bubble Sort");
-        bc.addItem("Cocktail Shaker Sort");
-        bc.addItem("Selection Sort");
-        bc.addItem("Radix LSD Base-10 Sort");
-        bc.addItem("Slow Sort");
-        bc.addItem("Merge Sort");
-        bc.addItem("Quick Sort");
-        bc.addItem("Counting Sort");
-        bc.addItem("Insertion Sort");
-        bc.addItem("Double Selection Sort");
-        bc.addItem("INPLC Quick Sort");
+        final JComboBox<Sort> bc = new JComboBox();
+        for(Sort srt : Sort.sortList){
+            bc.addItem(srt);
+        }
         bc.setSize(140, 20);
         bc.setLocation(620, 80);
         add(bc);
         javax.swing.JButton r = new javax.swing.JButton("Sort");
         r.setLocation(620, 110);
         r.setSize(140, 20);
-        r.addActionListener(new java.awt.event.ActionListener()
-        {
+        r.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                if (bc.getSelectedItem().equals(bc.getItemAt(0))) {
-                    try {
-                        Main.bubbleSort(Cpanel.a);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                } else if (bc.getSelectedItem().equals(bc.getItemAt(1))) {
-                    try {
-                        Main.cocktailShakerSort(Cpanel.a);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                } else if (bc.getSelectedItem().equals(bc.getItemAt(2))) {
-                    try {
-                        Main.selectionSort(Cpanel.a, 0);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                } else if (bc.getSelectedItem().equals(bc.getItemAt(3))) {
-                    try {
-                        Main.radixLSDBase10(Cpanel.a);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                } else if (bc.getSelectedItem().equals(bc.getItemAt(4))) {
-                    try {
-                        Main.slowSort(Cpanel.a, 0, Cpanel.a.length - 1);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                } else if (bc.getSelectedItem().equals(bc.getItemAt(5))) {
-                    try {
-                        Main.mergeSort(Cpanel.a, 0);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                } else if (bc.getSelectedItem().equals(bc.getItemAt(6))) {
-                    try {
-                        Main.quickSort(Cpanel.a, 0);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                } else if (bc.getSelectedItem().equals(bc.getItemAt(7))) {
-                    try {
-                        Main.countingSort(Cpanel.a);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                } else if (bc.getSelectedItem().equals(bc.getItemAt(8))) {
-                    try {
-                        Main.insertionSort(Cpanel.a);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                } else if (bc.getSelectedItem().equals(bc.getItemAt(9))) {
-                    try {
-                        Main.doubleSelectionSort(Cpanel.a);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                } else if (bc.getSelectedItem().equals(bc.getItemAt(10))) {
-                    try {
-                        Main.inplcQuickSort(Cpanel.a, 0, Cpanel.a.length-1);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
+                v.setTitle(((Sort)bc.getSelectedItem()).getName());
+                try {
+                    ((Sort)bc.getSelectedItem()).sortAlgorithm(a);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
                 }
             }
         });

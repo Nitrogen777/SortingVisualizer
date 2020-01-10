@@ -4,29 +4,91 @@ import java.util.Random;
 public class Main {
     static Visual v;
 
-    public Main() {}
+    public Main() throws javax.sound.midi.MidiUnavailableException{
+        new Sort("Bubble Sort"){
+            @Override
+            public void sortAlgorithm(int[] a) throws InterruptedException {
+                bubbleSort(a);
+            }
 
-    static int[] prime = new int[8];
+        };
+        new Sort("Insertion Sort"){
+            @Override
+            public void sortAlgorithm(int[] a) throws InterruptedException {
+                insertionSort(a);
+            }
 
-    public static void main(String[] args) throws InterruptedException, javax.sound.midi.MidiUnavailableException {
-        v = new Visual();
+        };
+        new Sort("Slow Sort"){
+            @Override
+            public void sortAlgorithm(int[] a) throws InterruptedException {
+                slowSort(a, 0, a.length-1);
+            }
+
+        };
+        new Sort("Merge Sort"){
+            @Override
+            public void sortAlgorithm(int[] a) throws InterruptedException {
+                mergeSort(a,0);
+            }
+
+        };
+        new Sort("Bubble Sort"){
+            @Override
+            public void sortAlgorithm(int[] a) throws InterruptedException {
+                bubbleSort(a);
+            }
+
+        };
+        new Sort("Quick Sort"){
+            @Override
+            public void sortAlgorithm(int[] a) throws InterruptedException {
+                inplcQuickSort(a, 0, a.length-1);
+            }
+
+        };
+        new Sort("Cocktail Shaker Sort"){
+            @Override
+            public void sortAlgorithm(int[] a) throws InterruptedException {
+                cocktailShakerSort(a);
+            }
+
+        };
+        new Sort("Selection Sort"){
+            @Override
+            public void sortAlgorithm(int[] a) throws InterruptedException {
+                selectionSort(a, 0);
+            }
+
+        };
+        new Sort("Double Selection Sort"){
+            @Override
+            public void sortAlgorithm(int[] a) throws InterruptedException {
+                doubleSelectionSort(a);
+            }
+
+        };
+        new Sort("Radix LSD Base 10"){
+            @Override
+            public void sortAlgorithm(int[] a) throws InterruptedException {
+                radixLSDBase10(a);
+            }
+
+        };
+        new Sort("Counting Sort"){
+            @Override
+            public void sortAlgorithm(int[] a) throws InterruptedException {
+                countingSort(a);
+            }
+
+        };
+        v = Visual.getInstance();
+    }
+    public static void main(String[] args) throws InterruptedException, javax.sound.midi.MidiUnavailableException{
+        Main m = new Main();
     }
 
-
-
-
-
-
-
-
     static int[] tem;
-
-
-
-
-
-
-
     public static void setup(int[] a)
             throws InterruptedException
     {
@@ -52,7 +114,7 @@ public class Main {
         v.display(a, -1, -1);
     }
 
-    public static void bubbleSort(int[] a) throws InterruptedException { v.setTitle("Bubble Sort");
+    public static void bubbleSort(int[] a) throws InterruptedException {
         while (!isSort(a)) {
             for (int i = 0; i < a.length - 1; i++) {
                 if (a[(i + 1)] <= a[i]) {
@@ -65,7 +127,7 @@ public class Main {
         }
         v.display(a, -1, -1);
     }
-    public static void insertionSort(int[] a) throws InterruptedException { v.setTitle("Insertion Sort");
+    public static void insertionSort(int[] a) throws InterruptedException {
         for(int i = 0; i < a.length; i++){
             for(int j = i; j > 0; j--){
                 if(a[j-1] > a[j]){
@@ -81,7 +143,7 @@ public class Main {
         v.display(a, -1, -1);
     }
 
-    public static void slowSort(int[] a, int f, int t) throws InterruptedException { v.setTitle("Slow Sort");
+    public static void slowSort(int[] a, int f, int t) throws InterruptedException {
         if (f >= t) {
             return;
         }
@@ -99,7 +161,6 @@ public class Main {
     }
 
     public static void mergeSort(int[] a, int spos) throws InterruptedException {
-        v.setTitle("Merge Sort");
         if (a.length == tem.length) {
             for (int d = 0; d < a.length; d++) {
                 tem[d] = a[d];
@@ -154,7 +215,6 @@ public class Main {
 
 
     public static void quickSort(int[] a, int spos) throws InterruptedException {
-        v.setTitle("Quick Sort");
         if (a.length == tem.length) {
             for (int d = 0; d < a.length; d++) {
                 tem[d] = a[d];
@@ -214,7 +274,6 @@ public class Main {
         if (f - s <= 0) {
             return;
         }
-        v.setTitle("INPLC Quick Sort");
         int axisi = f;
         int axis = a[axisi];
         int k = s-1;
@@ -239,7 +298,6 @@ public class Main {
     }
 
     public static void cocktailShakerSort(int[] a) throws InterruptedException {
-        v.setTitle("Cocktail Shaker Sort");
         while (!isSort(a)) {
             for (int i = 0; i < a.length - 1; i++) {
                 if (a[(i + 1)] <= a[i]) {
@@ -333,26 +391,6 @@ public class Main {
             for (int l = 0; l < a.length; l++) {
                 a[l] = r[l];
                 v.display(a, l, -1);
-            }
-        }
-        v.display(a, -1, -1);
-    }
-
-    public static void radixLSDBase10inplc(int[] a) throws InterruptedException { v.setTitle("Radix LSD Base-10 In-Place");
-        for (int i = 0; i < numOfDigits(max(a)); i++) {
-            int in = 0;
-            for (int j = 0; j < 10; j++) {
-                for (int k = 0; k < a.length; k++) {
-                    if (digiAt(a[k], i) == j) {
-                        int t = a[k];
-                        for (int m = k - 1; m >= in; m--) {
-                            a[(m + 1)] = a[m];
-                        }
-                        a[in] = t;
-                        in++;
-                    }
-                    v.display(a, -1, -1);
-                }
             }
         }
         v.display(a, -1, -1);
