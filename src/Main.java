@@ -1,87 +1,20 @@
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Main {
-    static Visual v;
+    private static Visual v;
 
     public Main() throws javax.sound.midi.MidiUnavailableException{
-        new Sort("Bubble Sort"){
-            @Override
-            public void sortAlgorithm(int[] a) throws InterruptedException {
-                bubbleSort(a);
-            }
-
-        };
-        new Sort("Bogo Sort"){
-            @Override
-            public void sortAlgorithm(int[] a) throws InterruptedException {
-                bogoSort(a);
-            }
-
-        };
-        new Sort("Insertion Sort"){
-            @Override
-            public void sortAlgorithm(int[] a) throws InterruptedException {
-                insertionSort(a);
-            }
-
-        };
-        new Sort("Slow Sort"){
-            @Override
-            public void sortAlgorithm(int[] a) throws InterruptedException {
-                slowSort(a, 0, a.length-1);
-            }
-
-        };
-        new Sort("Merge Sort"){
-            @Override
-            public void sortAlgorithm(int[] a) throws InterruptedException {
-                mergeSort(a,0);
-            }
-
-        };
-        new Sort("Quick Sort"){
-            @Override
-            public void sortAlgorithm(int[] a) throws InterruptedException {
-                inplcQuickSort(a, 0, a.length-1);
-            }
-
-        };
-        new Sort("Cocktail Shaker Sort"){
-            @Override
-            public void sortAlgorithm(int[] a) throws InterruptedException {
-                cocktailShakerSort(a);
-            }
-
-        };
-        new Sort("Selection Sort"){
-            @Override
-            public void sortAlgorithm(int[] a) throws InterruptedException {
-                selectionSort(a, 0);
-            }
-
-        };
-        new Sort("Double Selection Sort"){
-            @Override
-            public void sortAlgorithm(int[] a) throws InterruptedException {
-                doubleSelectionSort(a);
-            }
-
-        };
-        new Sort("Radix LSD Base 10"){
-            @Override
-            public void sortAlgorithm(int[] a) throws InterruptedException {
-                radixLSDBase10(a);
-            }
-
-        };
-        new Sort("Counting Sort"){
-            @Override
-            public void sortAlgorithm(int[] a) throws InterruptedException {
-                countingSort(a);
-            }
-
-        };
+        new Sort("Bubble Sort", a -> bubbleSort(a));
+        new Sort("Bogo Sort", a -> bogoSort(a));
+        new Sort("Insertion Sort", a -> insertionSort(a));
+        new Sort("Slow Sort", a -> slowSort(a, 0, a.length - 1));
+        new Sort("Merge Sort", a -> mergeSort(a, 0));
+        new Sort("Quick Sort", a -> inplcQuickSort(a, 0, a.length-1));
+        new Sort("Cocktail Shaker Sort", a -> cocktailShakerSort(a));
+        new Sort("Selection Sort", a -> selectionSort(a, 0));
+        new Sort("Double Selection Sort", a -> doubleSelectionSort(a));
+        new Sort("Radix LSD Base 10", a -> radixLSDBase10(a));
+        new Sort("Counting Sort", a -> countingSort(a));
         v = Visual.getInstance();
     }
     public static void main(String[] args) throws InterruptedException, javax.sound.midi.MidiUnavailableException{
